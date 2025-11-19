@@ -14,10 +14,12 @@ public class Rocket extends BasicImageSprite {
         acceleration = new Vector2();
 
         sprite.setSize(0.5f, 5482f / 2716f / 2f);
+        sprite.setOriginCenter();
     }
 
     @Override
     public void logic(float delta) {
         sprite.translate(velocity.x * delta * 2.5f, velocity.y * delta * 2.5f);
+        sprite.setRotation(velocity.angleDeg() - 90);
     }
 }
