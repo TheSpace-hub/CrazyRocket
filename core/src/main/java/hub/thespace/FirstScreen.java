@@ -1,8 +1,11 @@
 package hub.thespace;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import hub.thespace.sprites.Rocket;
@@ -17,14 +20,26 @@ public class FirstScreen implements Screen {
 
     Rocket rocket;
 
+    Vector2 touchPos;
+
     public FirstScreen(CrazyRocket game) {
         this.game = game;
         background = new Texture("background.jpg");
+        touchPos = new Vector2();
         rocket = new Rocket();
     }
 
     @Override
     public void render(float delta) {
+        draw();
+        logic(delta);
+        input();
+    }
+
+    /**
+     * Function draw everything.
+     */
+    void draw() {
         ScreenUtils.clear(Color.CLEAR);
 
         game.viewport.apply();
@@ -37,8 +52,6 @@ public class FirstScreen implements Screen {
         game.font.draw(game.batch, "Click on the ROCKET!", 0, 4.5f, game.viewport.getWorldWidth(), Align.center, false);
 
         game.batch.end();
-
-        logic(delta);
     }
 
     /**
@@ -48,6 +61,22 @@ public class FirstScreen implements Screen {
      */
     void logic(float delta) {
         rocket.logic(delta);
+    }
+
+    /**
+     * The function reads the input data.
+     */
+    void input() {
+        if (Gdx.input.isTouched()) {
+            Rectangle rocketRectangle = new Rectangle(
+                rocket.getSprite().getX(), rocket.getSprite().getY(),
+                rocket.getSprite().getWidth(), rocket.getSprite().getHeight());
+            touchPos.set(Gdx.input.getX(), Gdx.input.getY());
+            game.viewport.unproject(touchPos);
+            if (rocketRectangle.contains(touchPos)) {
+                System.exit(0);
+            }
+        }
     }
 
     @Override
