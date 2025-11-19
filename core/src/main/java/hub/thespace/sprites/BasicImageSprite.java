@@ -3,14 +3,14 @@ package hub.thespace.sprites;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public abstract class BasicSprite {
+public abstract class BasicImageSprite {
 
     final Texture texture;
     final Sprite sprite;
 
-    public BasicSprite(Texture texture, Sprite sprite) {
-        this.texture = texture;
-        this.sprite = sprite;
+    public BasicImageSprite(String internalPath) {
+        this.texture = new Texture(internalPath);
+        this.sprite = new Sprite(texture);
     }
 
     /**
