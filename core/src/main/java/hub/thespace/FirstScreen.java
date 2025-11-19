@@ -1,6 +1,9 @@
 package hub.thespace;
 
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.ScreenUtils;
 
 /**
  * First screen of the application. Displayed after the application is created.
@@ -8,9 +11,11 @@ import com.badlogic.gdx.Screen;
 public class FirstScreen implements Screen {
 
     final CrazyRocket game;
+    Texture background;
 
     public FirstScreen(CrazyRocket game) {
         this.game = game;
+        background = new Texture("background.jpg");
     }
 
     @Override
@@ -20,16 +25,18 @@ public class FirstScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        // Draw your screen here. "delta" is the time since last render in seconds.
+        ScreenUtils.clear(Color.CLEAR);
+        game.batch.setProjectionMatrix(game.viewport.getCamera().combined);
+        game.batch.begin();
+
+        game.batch.draw(background, 0, 0, 16, 9);
+
+        game.batch.end();
     }
 
     @Override
     public void resize(int width, int height) {
-        // If the window is minimized on a desktop (LWJGL3) platform, width and height are 0, which causes problems.
-        // In that case, we don't resize anything, and wait for the window to be a normal size before updating.
-        if (width <= 0 || height <= 0) return;
-
-        // Resize your screen here. The parameters represent the new window size.
+        game.viewport.update(width, height, true);
     }
 
     @Override

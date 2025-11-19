@@ -1,18 +1,21 @@
 package hub.thespace;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.viewport.FitViewport;
 
 /**
  * Main game class.
  */
 public class CrazyRocket extends Game {
 
-    OrthographicCamera camera;
+    FitViewport viewport;
+    SpriteBatch batch;
 
     @Override
     public void create() {
-        camera = new OrthographicCamera(16, 9);
+        viewport = new FitViewport(16, 9);
+        batch = new SpriteBatch();
         setScreen(new FirstScreen(this));
     }
 }
