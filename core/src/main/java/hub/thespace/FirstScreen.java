@@ -47,9 +47,9 @@ public class FirstScreen implements Screen {
         game.batch.begin();
 
         game.batch.draw(background, 0, 0, 16, 9);
-        rocket.getSprite().draw(game.batch);
-
         game.font.draw(game.batch, "Click on the ROCKET to START!", 0, 4.5f, game.viewport.getWorldWidth(), Align.center, false);
+
+        rocket.getSprite().draw(game.batch);
 
         game.batch.end();
     }
