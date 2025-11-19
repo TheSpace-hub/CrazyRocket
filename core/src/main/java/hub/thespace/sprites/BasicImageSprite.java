@@ -18,7 +18,7 @@ public abstract class BasicImageSprite {
      *
      * @param delta Delta time.
      */
-    abstract void logic(float delta);
+    abstract public void logic(float delta);
 
     public Texture getTexture() {
         return texture;
