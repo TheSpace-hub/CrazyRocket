@@ -6,7 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Write ENV value
-        run: echo "HELLO_WORLD_V=hiPlanet" >> $GITHUB_ENV
-
-      - name: Read ENV value
-        run: echo "::notice::This word is $HELLO_WORLD_V"
+        run: echo "### Well done! That's works!" >> $GITHUB_STEP_SUMMARY
