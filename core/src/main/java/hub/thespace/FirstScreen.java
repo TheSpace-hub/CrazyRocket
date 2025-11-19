@@ -41,6 +41,11 @@ public class FirstScreen implements Screen {
         logic(delta);
     }
 
+    /**
+     * Main logic function.
+     *
+     * @param delta Delta time.
+     */
     void logic(float delta) {
         rocket.logic(delta);
     }
