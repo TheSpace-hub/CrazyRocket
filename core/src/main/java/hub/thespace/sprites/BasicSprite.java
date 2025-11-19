@@ -3,7 +3,7 @@ package hub.thespace.sprites;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
-public class BasicSprite {
+public abstract class BasicSprite {
 
     final Texture texture;
     final Sprite sprite;
@@ -12,6 +12,13 @@ public class BasicSprite {
         this.texture = texture;
         this.sprite = sprite;
     }
+
+    /**
+     * The function is called every frame.
+     *
+     * @param delta Delta time.
+     */
+    abstract void logic(float delta);
 
     public Texture getTexture() {
         return texture;
