@@ -1,5 +1,5 @@
 name: Build game
-on: release
+on: push
 jobs:
   create_executable_file:
     name: Create executable file.
