@@ -4,6 +4,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.ScreenUtils;
+import hub.thespace.sprites.Rocket;
 
 /**
  * First screen of the application. Displayed after the application is created.
@@ -13,14 +14,12 @@ public class FirstScreen implements Screen {
     final CrazyRocket game;
     Texture background;
 
+    Rocket rocket;
+
     public FirstScreen(CrazyRocket game) {
         this.game = game;
         background = new Texture("background.jpg");
-    }
-
-    @Override
-    public void show() {
-        // Prepare your screen here.
+        rocket = new Rocket();
     }
 
     @Override
@@ -30,8 +29,20 @@ public class FirstScreen implements Screen {
         game.batch.begin();
 
         game.batch.draw(background, 0, 0, 16, 9);
+        rocket.getSprite().draw(game.batch);
 
         game.batch.end();
+
+        logic(delta);
+    }
+
+    void logic(float delta) {
+        rocket.logic(delta);
+    }
+
+    @Override
+    public void show() {
+        // Prepare your screen here.
     }
 
     @Override
