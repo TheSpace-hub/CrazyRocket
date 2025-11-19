@@ -1,3 +1,4 @@
+name: Build game
 on: push
 jobs:
   create_executable_file:
