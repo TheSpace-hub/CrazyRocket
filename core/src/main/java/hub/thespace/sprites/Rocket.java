@@ -8,7 +8,7 @@ public class Rocket extends BasicImageSprite {
     }
 
     @Override
-    void logic(float delta) {
+    public void logic(float delta) {
 
     }
 }
