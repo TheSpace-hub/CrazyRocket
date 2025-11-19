@@ -7,8 +7,8 @@ jobs:
     steps:
       - name: Build executable file.
         run: |
-          - echo "::error::This is ErRor"
-          - echo "::debug::This is debug"
-          - echo "::notice::This is notice"
-          - echo "::warning::This is warning"
-          - echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "::error::This is ErRor"
+          echo "::debug::This is debug"
+          echo "::notice::This is notice"
+          echo "::warning::This is warning"
+          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
