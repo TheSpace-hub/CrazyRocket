@@ -13,10 +13,12 @@ public class Rocket extends BasicImageSprite {
     Vector2 accelerationRight;
     Vector2 accelerationStop;
     boolean fly;
+    float fadeSpeed;
 
     public Rocket() {
         super("rocket.png");
         fly = true;
+        fadeSpeed = 0.025f;
 
         velocity = new Vector2(MathUtils.random(-8, 8), MathUtils.random(-8, 8));
         accelerationLeft = new Vector2();
@@ -35,7 +37,53 @@ public class Rocket extends BasicImageSprite {
      */
     @Override
     public void logic(float delta) {
+        gravityLogic(delta);
+        flyingLogic(delta);
 
+        fadeLogic(delta);
+    }
+
+    /**
+     * Stop the rocket flying.
+     */
+    public void stopFlying() {
+        fly = false;
+    }
+
+    /**
+     * The rocket's fade logic.
+     */
+    void fadeLogic(float delta) {
+        if (fly)
+            return;
+        fadeSpeed -= .1f * delta;
+        if (sprite.getScaleX() < 0.1f)
+            sprite.setAlpha(0);
+        else
+            sprite.scale(fadeSpeed);
+    }
+
+    /**
+     * The rocket's flying logic.
+     *
+     * @param delta Delta time.
+     */
+    void flyingLogic(float delta) {
+        sprite.translate(velocity.x * delta, velocity.y * delta);
+        sprite.setRotation(velocity.angleDeg() - 90);
+
+        if (sprite.getX() < 0 || sprite.getX() + sprite.getWidth() > 16)
+            velocity = new Vector2(-velocity.x / 2, velocity.y);
+        if (sprite.getY() < 0 || sprite.getY() + sprite.getHeight() > 9)
+            velocity = new Vector2(velocity.x, -velocity.y / 2);
+    }
+
+    /**
+     * The rocket's gravity logic.
+     *
+     * @param delta Delta time.
+     */
+    void gravityLogic(float delta) {
         if (fly) {
             accelerationLeft = new Vector2(
                 4f - (sprite.getX() + sprite.getWidth() / 2f),
@@ -56,20 +104,5 @@ public class Rocket extends BasicImageSprite {
             velocity.add(accelerationStop.scl(delta * 10f));
 
         }
-
-        sprite.translate(velocity.x * delta, velocity.y * delta);
-        sprite.setRotation(velocity.angleDeg() - 90);
-
-        if (sprite.getX() < 0 || sprite.getX() + sprite.getWidth() > 16)
-            velocity = new Vector2(-velocity.x / 2, velocity.y);
-        if (sprite.getY() < 0 || sprite.getY() + sprite.getHeight() > 9)
-            velocity = new Vector2(velocity.x, -velocity.y / 2);
-    }
-
-    /**
-     * Stop the rocket flying.
-     */
-    public void stopFlying() {
-        fly = false;
     }
 }
