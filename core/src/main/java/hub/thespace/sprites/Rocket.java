@@ -15,7 +15,7 @@ public class Rocket extends BasicImageSprite {
     public Rocket() {
         super("rocket.png");
 
-        velocity = new Vector2(MathUtils.random(3, 8), MathUtils.random(3, 8));
+        velocity = new Vector2(MathUtils.random(-8, 8), MathUtils.random(-8, 8));
         accelerationLeft = new Vector2();
         accelerationRight = new Vector2();
 
