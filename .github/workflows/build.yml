@@ -6,4 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Write ENV value
-        run: echo "### Well done! That's works!" >> $GITHUB_STEP_SUMMARY
+        run: echo "### Well done! That's works :sweat_smile:" >> $GITHUB_STEP_SUMMARY
