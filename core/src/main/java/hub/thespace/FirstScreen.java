@@ -3,6 +3,7 @@ package hub.thespace;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.ScreenUtils;
 import hub.thespace.sprites.Rocket;
 
@@ -25,11 +26,15 @@ public class FirstScreen implements Screen {
     @Override
     public void render(float delta) {
         ScreenUtils.clear(Color.CLEAR);
+
+        game.viewport.apply();
         game.batch.setProjectionMatrix(game.viewport.getCamera().combined);
         game.batch.begin();
 
         game.batch.draw(background, 0, 0, 16, 9);
         rocket.getSprite().draw(game.batch);
+
+        game.font.draw(game.batch, "Click on the ROCKET!", 0, 4.5f, game.viewport.getWorldWidth(), Align.center, false);
 
         game.batch.end();
 
