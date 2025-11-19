@@ -5,10 +5,8 @@ jobs:
     name: Create executable file.
     runs-on: ubuntu-latest
     steps:
-      - name: Build executable file.
-        run: |
-          echo "::error::This is ErRor"
-          echo "::debug::This is debug"
-          echo "::notice::This is notice"
-          echo "::warning::This is warning"
-          echo "### Hello world! :rocket:" >> $GITHUB_STEP_SUMMARY
+      - name: Write ENV value
+        run: echo "HELLO_WORLD_V=hiPlanet" >> $GITHUB_ENV
+
+      - name: Read ENV value
+        run: echo "::notice::This word is $HELLO_WORLD_V"
