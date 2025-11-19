@@ -21,6 +21,11 @@ public class Rocket extends BasicImageSprite {
         sprite.setOriginCenter();
     }
 
+    /**
+     * Function move the rocket.
+     *
+     * @param delta Delta time.
+     */
     @Override
     public void logic(float delta) {
         accelerationLeft = new Vector2(
