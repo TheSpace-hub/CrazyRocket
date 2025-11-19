@@ -74,7 +74,7 @@ public class FirstScreen implements Screen {
             touchPos.set(Gdx.input.getX(), Gdx.input.getY());
             game.viewport.unproject(touchPos);
             if (rocketRectangle.contains(touchPos)) {
-                System.exit(0);
+                rocket.stopFlying();
             }
         }
     }
