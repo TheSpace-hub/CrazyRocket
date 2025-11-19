@@ -1,9 +1,9 @@
 name: Build game
-on: push
+on: release
 jobs:
   create_executable_file:
     name: Create executable file.
     runs-on: ubuntu-latest
     steps:
       - name: Build executable file.
-        run: echo Run! Run! Run!
+        run: echo "::error This is error!"
