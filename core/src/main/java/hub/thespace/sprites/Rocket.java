@@ -69,7 +69,7 @@ public class Rocket extends BasicImageSprite {
      * @param delta Delta time.
      */
     void flyingLogic(float delta) {
-        sprite.translate(velocity.x * delta, velocity.y * delta);
+        sprite.translate(velocity.x * delta * .5f, velocity.y * delta * .5f);
         sprite.setRotation(velocity.angleDeg() - 90);
 
         if (sprite.getX() < 0 || sprite.getX() + sprite.getWidth() > 16)
