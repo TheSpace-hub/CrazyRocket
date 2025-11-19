@@ -2,7 +2,9 @@ package hub.thespace;
 
 import com.badlogic.gdx.Game;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
+/**
+ * Main game class.
+ */
 public class CrazyRocket extends Game {
     @Override
     public void create() {
