@@ -6,4 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build the executable file.
-        run: './gradlew lwjgl3:dist'
+        run: ls
