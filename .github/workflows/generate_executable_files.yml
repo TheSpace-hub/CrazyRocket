@@ -2,6 +2,7 @@ name: Generate release.
 on:
   release:
     types:
+      - created
       - published
 
 jobs:
