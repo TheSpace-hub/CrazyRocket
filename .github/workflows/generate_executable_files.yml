@@ -1,4 +1,4 @@
-name: Generate release.
+name: Generate release
 on:
   release:
     types:
@@ -6,7 +6,7 @@ on:
 
 jobs:
   create_executable_file_for_ubuntu:
-    name: Create the executable file.
+    name: Create the executable file
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -15,10 +15,9 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v5
         with:
-          name: crazyrocket-ubuntu
-          path: core/build/libs
+          path: lwjgl3/build/libs
   upload_file_to_release:
-    name: Upload game to release.
+    name: Upload game to release
     needs: create_executable_file_for_ubuntu
     runs-on: ubuntu-latest
     permissions:
@@ -26,12 +25,11 @@ jobs:
     env:
       GITHUB_TOKEN: $GITHUB_TOKEN
     steps:
-      - name: Release information output.
+      - name: Release information output
         run: echo ::notice::Release version is $GITHUB_REF_NAME
-      - name: Download artefact.
+      - name: Download artefact
         uses: actions/download-artifact@v6
         with:
           name: crazyrocket-ubuntu
-      - run: ls
-      - name: Update release notes from file.
-        run: gh release edit v0.1 --notes-file crazyrocket-ubuntu
+      - name: Update release notes from file
+        run: gh release edit v0.1 --notes-file CrazyRocket-1.0.0.jar
