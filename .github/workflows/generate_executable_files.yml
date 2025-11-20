@@ -15,11 +15,14 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v5
         with:
-          path: /core/build/libs
+          name: crazyrocket-ubuntu
+          path: dist/
   upload_file_to_release:
     name: Upload the file to release
     needs: create_executable_file_for_ubuntu
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: $GITHUB_TOKEN
     steps:
       - name: Copy file
         run: gh release edit v0.1 --notes-file dist/
