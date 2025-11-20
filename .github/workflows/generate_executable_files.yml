@@ -24,7 +24,7 @@ jobs:
     permissions:
       contents: write
     env:
-      GH_TOKEN: $GITHUB_TOKEN
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - name: Download artefact
         uses: actions/download-artifact@v6
