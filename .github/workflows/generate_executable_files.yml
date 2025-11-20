@@ -9,12 +9,13 @@ jobs:
     name: Create the executable file
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Build the executable file.
         run: ./gradlew lwjgl3:dist
       - name: Upload build artifacts
         uses: actions/upload-artifact@v5
         with:
+          name: crazyrocket-ubuntu
           path: lwjgl3/build/libs
   upload_file_to_release:
     name: Upload game to release
