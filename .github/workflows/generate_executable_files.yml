@@ -32,5 +32,6 @@ jobs:
         uses: actions/download-artifact@v6
         with:
           name: crazyrocket-ubuntu
+      - run: ls
       - name: Update release notes from file.
         run: gh release edit v0.1 --notes-file crazyrocket-ubuntu
