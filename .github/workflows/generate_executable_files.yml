@@ -31,4 +31,4 @@ jobs:
         with:
           name: crazyrocket-ubuntu
       - name: Update release notes from file
-        run: gh release edit @GITHUB_REF_NAME --notes-file CrazyRocket-1.0.0.jar
+        run: gh release edit $GITHUB_REF_NAME --notes-file CrazyRocket-1.0.0.jar
