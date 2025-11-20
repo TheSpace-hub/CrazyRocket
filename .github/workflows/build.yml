@@ -1,12 +1,9 @@
-name: Build game
+name: Build the game
 on: push
 jobs:
   create_executable_file:
-    name: Create executable file.
+    name: Create the executable file.
     runs-on: ubuntu-latest
     steps:
-      - name: Write ENV value
-        run: |
-          echo "### Well done! That's works :sweat_smile:" >> $GITHUB_STEP_SUMMARY
-          echo "I hope I can build *executable* file" >> $GITHUB_STEP_SUMMARY
-          echo "Github Actions is really good! :+1:" >> $GITHUB_STEP_SUMMARY
+      - name: Build the executable file.
+        run: './gradlew lwjgl3:dist'
