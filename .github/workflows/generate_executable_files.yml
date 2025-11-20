@@ -2,7 +2,7 @@ name: Generate release.
 on:
   release:
     types:
-      - released
+      - published
 
 jobs:
   create_executable_file_for_ubuntu:
