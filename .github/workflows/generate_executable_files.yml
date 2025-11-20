@@ -1,7 +1,8 @@
-name: Build the game
-on: push
+name: Generate release.
+on: release
+
 jobs:
-  create_executable_file:
+  create_executable_file_for_ubuntu:
     name: Create the executable file.
     runs-on: ubuntu-latest
     steps:
@@ -12,3 +13,9 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           path: core/build/libs
+  upload_file_to_release:
+    name: Upload the file to release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Copy file
+        run: echo You release is ${{ github.ref }}
