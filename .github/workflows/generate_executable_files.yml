@@ -22,4 +22,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Copy file
-        run: gh release edit v0.1 --notes-file /core/build/libs
+        run: gh release edit v0.1 --notes-file dist/
