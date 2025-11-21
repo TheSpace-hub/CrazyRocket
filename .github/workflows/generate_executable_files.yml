@@ -13,9 +13,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Build the executable file.
+      - name: Build the executable file
         run: ./gradlew lwjgl3:dist
-      - name: Upload build artifacts
+      - name: Upload artefact
+        uses: actions/upload-artifact@v5
+        with:
+          name: crazyrocket
+          path: lwjgl3/build/libs/*.jar
+      - name: Upload to release
         uses: softprops/action-gh-release@v2
         with:
           files: lwjgl3/build/libs/*.jar
+          draft: false
