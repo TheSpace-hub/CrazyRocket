@@ -1,0 +1,25 @@
+name: Generate release
+on:
+  release:
+    types:
+      - released
+
+permissions:
+  contents: write
+
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  create_executable_file_for_ubuntu:
+    name: Create the executable file
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build the executable file
+        run: ./gradlew lwjgl3:dist
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: lwjgl3/build/libs/*.jar
+          draft: false
