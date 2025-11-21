@@ -4,6 +4,9 @@ on:
     types:
       - released
 
+env:
+  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   create_executable_file_for_ubuntu:
     name: Create the executable file
@@ -13,24 +16,6 @@ jobs:
       - name: Build the executable file.
         run: ./gradlew lwjgl3:dist
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v5
+        uses: softprops/action-gh-release@v2
         with:
-          name: crazyrocket-ubuntu
-          path: lwjgl3/build/libs
-  upload_file_to_release:
-    name: Upload game to release
-    needs: create_executable_file_for_ubuntu
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    env:
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      OWNER: ${{ github.repository_owner }}
-      REPO: ${{ github.event.repository.name }}
-    steps:
-      - name: Download artefact
-        uses: actions/download-artifact@v6
-        with:
-          name: crazyrocket-ubuntu
-      - name: Update release notes from file
-        run: gh release edit ${{ github.ref_name }} --notes-file CrazyRocket-1.0.0.jar --repo TheSpace-hub/CrazyRocket
+          files: lwjgl3/build/libs/*.jar
