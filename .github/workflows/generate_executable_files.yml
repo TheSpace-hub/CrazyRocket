@@ -9,7 +9,6 @@ permissions:
 
 env:
   GH_TOKEN: $GITHUB_TOKEN
-  RELEASE_VERSION: $GITHUB_REF_NAME
 
 jobs:
   upload_project_to_release:
@@ -18,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - name: Change project version in gradle
-        run: "sed -i '/projectVersion=dev/projectVersion=$GITHUB_REF_NAME/' gradle.properties"
+        run: sed -i "/projectVersion=dev/projectVersion=$GITHUB_REF_NAME/" gradle.properties
       - name: Build the executable file
         run: ./gradlew lwjgl3:dist
       - name: Upload to release
