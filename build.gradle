@@ -54,8 +54,14 @@ configure(subprojects) {
   }
 }
 
+def getVersion() {
+  if (System.getenv("RELEASE_VERSION"))
+    return System.getenv("RELEASE_VERSION")
+  return projectVersion
+}
+
 subprojects {
-  version = "$projectVersion"
+  version = getVersion()
   ext.appName = 'CrazyRocket'
   repositories {
     mavenCentral()
@@ -70,3 +76,5 @@ subprojects {
 }
 
 eclipse.project.name = 'CrazyRocket' + '-parent'
+
+
